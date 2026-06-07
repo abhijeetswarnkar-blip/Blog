@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hire Intelligence</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#f5f4f2;--bg2:#eceae6;--bg3:#e2e0da;
+--txt:#0f1117;--txt2:#3a3d47;--txt3:#7a7d87;
+--border:#d8d6d0;--border2:#c4c2bc;
+--accent:#e8622a;--accent2:#c94f1e;
+--gold:#e8622a;--gold2:#c94f1e;
+--card:#ffffff;
+--hero-bg:#0f1117;
+--radius:10px;
+}
+[data-theme="dark"]{
+--bg:#0f1117;--bg2:#1a1f2e;--bg3:#222838;
+--txt:#f0efe8;--txt2:#a8aab4;--txt3:#5a5d67;
+--border:#2a2f3e;--border2:#343a4a;
+--accent:#e8622a;--accent2:#c94f1e;
+--gold:#e8622a;--gold2:#c94f1e;
+--card:#1a1f2e;
+--hero-bg:#0a0c12;
+}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--txt);line-height:1.7;transition:background .2s,color .2s;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+img{max-width:100%;display:block}
+
+nav{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 1.5rem}
+.nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{font-size:1.15rem;font-weight:700;letter-spacing:-.5px;color:var(--txt);cursor:pointer;display:flex;align-items:center;gap:6px}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-links a,.nav-links button{font-size:.83rem;color:var(--txt2);font-family:sans-serif;letter-spacing:.02em;transition:color .15s;cursor:pointer}
+.nav-links a:hover,.nav-links button:hover{color:var(--txt)}
+.theme-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border:1px solid var(--border);border-radius:20px;font-size:.75rem;color:var(--txt2);transition:all .15s}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+.hero{background:#0d2035;padding:0;position:relative;overflow:hidden;min-height:220px}
+.hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;opacity:.5}
+.hero-split{max-width:920px;margin:0 auto;display:flex;align-items:stretch;position:relative;z-index:1;min-height:220px}
+.hero-left{flex:1 1 0;padding:2.75rem 2rem 2.75rem 1.5rem;display:flex;flex-direction:column;justify-content:center}
+.hero-right{flex:0 0 280px;display:flex;align-items:center;justify-content:center;padding:1.5rem 1.5rem 1.5rem 0;position:relative}
+.hero-right svg{width:100%;height:auto;max-height:190px}
+.hero-rule{width:32px;height:2px;background:var(--accent);margin-bottom:1rem;opacity:.7}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:.5rem;font-family:sans-serif;font-style:normal}
+.hero p.hero-sub{font-size:.84rem;color:rgba(255,255,255,.55);font-family:sans-serif;margin-top:0}
+.hero-name{font-size:clamp(2rem,4.5vw,2.9rem);font-weight:700;line-height:1.1;letter-spacing:0;color:#ffffff;font-family:'Cormorant Garamond',serif}
+.hero-name em{font-style:normal;color:var(--accent)}
+.article-banner{background:#0d2035;padding:0;position:relative;overflow:hidden;min-height:180px;border-bottom:1px solid rgba(232,98,42,.15)}
+.article-banner canvas{position:absolute;top:0;left:0;width:100%;height:100%;opacity:.45}
+.article-banner-split{max-width:920px;margin:0 auto;display:flex;align-items:stretch;position:relative;z-index:1;min-height:180px}
+.article-banner-left{flex:1 1 0;padding:2.25rem 2rem 2.25rem 1.5rem;display:flex;flex-direction:column;justify-content:center}
+.article-banner-right{flex:0 0 240px;display:flex;align-items:center;justify-content:center;padding:1.5rem 1.5rem 1.5rem 0}
+.article-banner-right svg{width:100%;height:auto;max-height:150px}
+.article-banner-quote{font-size:1.1rem;color:rgba(255,255,255,.88);font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.6;margin-top:.6rem}
+.article-banner-attr{font-size:.88rem;color:rgba(232,98,42,.9);font-family:sans-serif;margin-top:.3rem;letter-spacing:.04em}
+@media(max-width:640px){
+  .hero-split,.article-banner-split{flex-direction:column;min-height:auto}
+  .hero-right,.article-banner-right{display:none}
+  .hero-left{padding:2rem 1.1rem}
+  .article-banner-left{padding:1.75rem 1.1rem}
+}
+
+.stats-bar{background:var(--accent);padding:1rem 1.5rem}
+.stats-inner{max-width:920px;margin:0 auto;display:flex;gap:1rem;justify-content:space-between;align-items:center;text-align:center;flex-wrap:wrap}
+.stat{flex:1 1 0;min-width:140px;display:flex;flex-direction:column;align-items:center}
+.stat-num{font-size:1.5rem;font-weight:700;line-height:1;color:#fff}
+.stat-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.7);font-family:sans-serif;margin-top:3px}
+
+.tag{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:4px;font-family:sans-serif}
+.tag-indigo{background:var(--bg2);color:var(--accent);border:1px solid var(--border)}
+.tag-gold{background:rgba(212,160,23,.12);color:var(--gold2);border:1px solid rgba(212,160,23,.3)}
+[data-theme="dark"] .tag-gold{color:var(--gold);border-color:rgba(240,192,64,.3)}
+
+.posts-grid{max-width:920px;margin:0 auto;padding:2rem 1.5rem 5rem;display:grid;gap:1.5rem}
+.post-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem 2rem;transition:border-color .2s,box-shadow .2s,transform .15s;cursor:pointer;position:relative;overflow:hidden}
+.post-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent);opacity:0;transition:opacity .2s}
+.post-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,98,42,.1)}
+.post-card:hover::before{opacity:1}
+.post-meta{display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;flex-wrap:wrap}
+.post-date{font-size:.75rem;color:var(--txt3);font-family:sans-serif}
+.post-card h2{font-size:1.55rem;font-weight:700;line-height:1.2;margin-bottom:.55rem;letter-spacing:0;color:var(--txt);font-family:'Cormorant Garamond',serif}
+.post-card .deck{font-size:.93rem;color:var(--txt2);line-height:1.65;margin-bottom:1.1rem}
+
+/* AUTHOR CHIP on post cards */
+.author-chip{display:flex;align-items:center;gap:.55rem;margin-bottom:.9rem}
+.chip-photo{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--accent);flex-shrink:0}
+.chip-fallback{width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.7rem;flex-shrink:0;border:2px solid var(--accent)}
+.chip-name{font-size:.78rem;font-weight:700;font-family:sans-serif;color:var(--txt2)}
+.chip-meta{font-size:.7rem;color:var(--txt3);font-family:sans-serif}
+
+.read-link{font-size:.8rem;color:var(--accent);font-family:sans-serif;display:flex;align-items:center;gap:5px;font-weight:600;letter-spacing:.02em}
+.read-link svg{width:13px;height:13px;transition:transform .15s}
+.post-card:hover .read-link svg{transform:translateX(4px)}
+
+.article-wrap{max-width:680px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.back-btn{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--txt3);font-family:sans-serif;margin-bottom:2rem;transition:color .15s;cursor:pointer}
+.back-btn:hover{color:var(--accent)}
+.article-wrap h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;letter-spacing:0;margin-bottom:.7rem;font-family:'Cormorant Garamond',serif}
+.article-deck{font-size:1.02rem;color:var(--txt2);margin-bottom:1.5rem;font-style:italic;line-height:1.65}
+
+/* AUTHOR ROW in article — larger photo */
+.author-row{display:flex;align-items:center;gap:.85rem;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo-lg{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--accent);flex-shrink:0}
+.author-fallback-lg{width:48px;height:48px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.9rem;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:700}
+.author-role{font-size:.75rem;color:var(--txt3);font-family:sans-serif}
+
+.article-body h2{font-size:1.15rem;font-weight:700;margin:2rem 0 .6rem;letter-spacing:-.1px;color:var(--accent)}
+.article-body p{margin-bottom:1.1rem;font-size:1rem;line-height:1.8;color:var(--txt)}
+.article-body blockquote{border-left:3px solid var(--gold);padding:.85rem 1.25rem;margin:1.75rem 0;background:var(--bg2);border-radius:0 var(--radius) var(--radius) 0}
+.article-body blockquote p{margin:0;font-style:italic;color:var(--txt2);font-size:.97rem}
+.article-body blockquote cite{display:block;font-size:.75rem;font-style:normal;color:var(--gold2);font-family:sans-serif;margin-top:.45rem;font-weight:600}
+[data-theme="dark"] .article-body blockquote cite{color:var(--gold)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin:1.75rem 0;padding:1.5rem;background:var(--bg2);border-radius:var(--radius);border:1px solid var(--border)}
+.s-item{text-align:center}
+.s-num{font-size:1.9rem;font-weight:700;color:var(--accent);line-height:1}
+.s-lbl{font-size:.67rem;color:var(--txt3);font-family:sans-serif;text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+
+.about-wrap{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+.about-header{display:flex;gap:2rem;align-items:flex-start;margin-bottom:2rem;flex-wrap:wrap}
+.about-photo{width:100px;height:100px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;border:3px solid var(--accent)}
+.about-header h1{font-size:1.8rem;font-weight:700;margin-bottom:.2rem}
+.about-role{color:var(--accent);font-weight:600;font-size:.95rem;font-family:sans-serif;margin-bottom:.2rem}
+.about-loc{color:var(--txt3);font-size:.82rem;font-family:sans-serif}
+.about-links{display:flex;gap:.65rem;margin-top:.85rem;flex-wrap:wrap}
+.about-link{display:flex;align-items:center;gap:5px;font-size:.78rem;font-family:sans-serif;padding:5px 12px;border:1px solid var(--border);border-radius:20px;color:var(--txt2);transition:all .15s}
+.about-link:hover{border-color:var(--accent);color:var(--accent);background:var(--bg2)}
+.about-body h2{font-size:1.05rem;font-weight:700;margin:1.75rem 0 .55rem;color:var(--accent)}
+.about-body p{font-size:.93rem;line-height:1.75;color:var(--txt2);margin-bottom:.85rem}
+.skills-grid{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.5rem}
+.skill-tag{font-size:.73rem;font-family:sans-serif;padding:4px 10px;background:var(--bg2);border:1px solid var(--border2);border-radius:20px;color:var(--txt2)}
+
+.admin-wrap{max-width:720px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.admin-wrap h1{font-size:1.4rem;font-weight:700;margin-bottom:.2rem}
+.admin-wrap>.subtitle{font-size:.82rem;color:var(--txt3);font-family:sans-serif;margin-bottom:2rem}
+.form-group{margin-bottom:1.1rem}
+.form-group label{display:block;font-size:.72rem;font-family:sans-serif;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.35rem}
+.form-group input,.form-group textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;font-size:.92rem;color:var(--txt);font-family:'Georgia',serif;transition:border-color .15s}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--accent)}
+.form-group textarea{resize:vertical;min-height:200px;line-height:1.65}
+.btn-primary{background:var(--accent);color:#fff;padding:.65rem 1.5rem;border-radius:8px;font-size:.85rem;font-family:sans-serif;font-weight:700;letter-spacing:.03em;transition:background .15s}
+.btn-primary:hover{background:var(--accent2)}
+.btn-danger{background:transparent;color:var(--accent);border:1px solid var(--border2);padding:.4rem .9rem;border-radius:8px;font-size:.75rem;font-family:sans-serif;transition:all .15s}
+.btn-danger:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.admin-posts{margin-top:2rem}
+.admin-post-row{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;border:1px solid var(--border);border-radius:8px;margin-bottom:.55rem;gap:.75rem}
+.admin-post-title{font-size:.88rem;font-weight:600;flex:1;color:var(--txt)}
+.admin-post-meta{font-size:.72rem;color:var(--txt3);font-family:sans-serif;margin-top:2px}
+.success-msg{background:var(--bg2);border:1px solid #6a994e;color:#5a8a3e;padding:.65rem 1rem;border-radius:8px;font-size:.82rem;font-family:sans-serif;margin-top:1rem;display:none}
+[data-theme="dark"] .success-msg{color:#8ec87a}
+
+footer{border-top:1px solid var(--border);padding:0;overflow:hidden}
+.footer-inner{max-width:920px;margin:0 auto;padding:1.5rem 1.5rem}
+.quote-bar{background:var(--bg2);border-top:1px solid var(--border);padding:.85rem 1.5rem;text-align:center;position:relative}
+.quote-text{font-size:.78rem;color:var(--txt3);font-family:'Georgia',serif;font-style:italic;transition:opacity .5s;line-height:1.6}
+.quote-attr{font-size:.68rem;color:var(--txt3);font-family:sans-serif;margin-top:.25rem;opacity:.6;transition:opacity .5s}
+.article-quote-bar{border-top:1px solid var(--border);margin-top:3rem;padding:1.5rem 0 .5rem;text-align:center}
+.article-quote-text{font-size:.9rem;color:var(--txt3);font-family:'Georgia',serif;font-style:italic;line-height:1.7}
+.article-quote-attr{font-size:.72rem;color:var(--txt3);font-family:sans-serif;margin-top:.4rem;opacity:.6}
+
+.page{display:none}
+.page.active{display:block}
+
+@media (max-width:640px){
+  nav{padding:0 1rem}
+  .nav-inner{height:auto;padding:.65rem 0;flex-wrap:wrap;gap:.5rem;justify-content:center}
+  .nav-links{gap:.9rem;flex-wrap:wrap;justify-content:center}
+  .nav-links a,.nav-links button{font-size:.78rem}
+  .theme-btn{padding:4px 10px;font-size:.7rem}
+  .hero{padding:2.5rem 1.1rem 2.25rem}
+  .hero h1{font-size:1.85rem;line-height:1.18}
+  .hero p{font-size:.92rem}
+  .hero::after{width:180px;height:180px;top:-40px;right:-40px}
+  .hero::before{width:120px;height:120px;bottom:-50px}
+  .stats-bar{padding:1.25rem 1rem}
+  .stats-inner{gap:1.25rem 1.5rem}
+  .stat{flex:1 1 130px}
+  .stat-num{font-size:1.35rem}
+  .stat-lbl{font-size:.62rem}
+  .posts-grid{padding:1.5rem 1rem 3rem;gap:1.1rem}
+  .post-card{padding:1.25rem 1.25rem}
+  .post-card h2{font-size:1.1rem}
+  .post-card .deck{font-size:.88rem}
+  .article-wrap{padding:1.5rem 1.1rem 3rem}
+  .article-body p,.article-body h2{font-size:.95rem}
+  .article-body blockquote{padding:.7rem 1rem;margin:1.25rem 0}
+  .stat-grid{padding:1rem;gap:.75rem}
+  .s-num{font-size:1.5rem}
+  .about-wrap{padding:1.75rem 1.1rem 3rem}
+  .about-header{gap:1.1rem;flex-direction:column;align-items:center;text-align:center}
+  .about-photo{width:88px;height:88px}
+  .about-links{justify-content:center}
+  .about-header h1{font-size:1.45rem}
+  .admin-wrap{padding:1.5rem 1.1rem 3rem}
+  .footer-inner p{font-size:.72rem}
+}
+.pagination{max-width:920px;margin:0 auto;padding:0 1.5rem 4rem;display:flex;justify-content:center;align-items:center;gap:.4rem;flex-wrap:wrap;font-family:sans-serif}
+.pagination button{min-width:38px;height:38px;padding:0 .7rem;border:1px solid var(--border);background:var(--bg);color:var(--txt);border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s}
+.pagination button:hover:not(:disabled){background:var(--bg2);border-color:var(--txt3)}
+.pagination button.active{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.pagination button:disabled{opacity:.4;cursor:not-allowed}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">
+      <div class="dot"></div>Hire<span>Intelligence</span>
+    </div>
+    <div class="nav-links">
+      <a onclick="showPage('home')">Articles</a>
+      <a onclick="showPage('training')">The Sourcebook</a>
+      <a id="nav-write-link" onclick="showPage('admin')" style="display:none">✦ Write</a>
+      <button class="theme-btn" onclick="toggleTheme()">
+        <span id="theme-icon">☾</span> <span id="theme-label">Dark</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero" id="hero-home">
+    <canvas id="canvas-home"></canvas>
+    <div class="hero-split">
+      <div class="hero-left">
+        <div class="hero-rule"></div>
+        <div class="hero-name">Hire <em>Intelligence</em></div>
+        <p style="margin-top:.75rem;font-family:'Cormorant Garamond',serif;font-size:1.2rem">A blog about AI, talent and the structural shifts towards 2029-ready talent.</p>
+        <p class="hero-sub" style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic">No algorithms. No engagement bait. Just clear thinking.</p>
+      </div>
+      <div class="hero-right">
+        <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- orbit rings -->
+          <circle cx="110" cy="90" r="74" stroke="rgba(255,255,255,.18)" stroke-width="1.2" stroke-dasharray="4 6"/>
+          <circle cx="110" cy="90" r="50" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="3 5"/>
+          <!-- spoke lines -->
+          <line x1="110" y1="90" x2="110" y2="16" stroke="#e8622a" stroke-width="1.5" opacity=".7"/>
+          <line x1="110" y1="90" x2="174" y2="53" stroke="#e8622a" stroke-width="1.5" opacity=".6"/>
+          <line x1="110" y1="90" x2="174" y2="127" stroke="#e8622a" stroke-width="1.5" opacity=".6"/>
+          <line x1="110" y1="90" x2="110" y2="164" stroke="#e8622a" stroke-width="1.5" opacity=".5"/>
+          <line x1="110" y1="90" x2="46" y2="127" stroke="#e8622a" stroke-width="1.5" opacity=".6"/>
+          <line x1="110" y1="90" x2="46" y2="53" stroke="#e8622a" stroke-width="1.5" opacity=".65"/>
+          <!-- secondary spokes -->
+          <line x1="110" y1="90" x2="148" y2="64" stroke="rgba(180,210,255,.5)" stroke-width="1"/>
+          <line x1="110" y1="90" x2="72" y2="116" stroke="rgba(180,210,255,.4)" stroke-width="1"/>
+          <line x1="110" y1="90" x2="150" y2="114" stroke="rgba(180,210,255,.4)" stroke-width="1"/>
+          <line x1="110" y1="90" x2="70" y2="66" stroke="rgba(180,210,255,.4)" stroke-width="1"/>
+          <!-- outer nodes -->
+          <circle cx="110" cy="16" r="6" fill="#e8622a"/>
+          <circle cx="174" cy="53" r="5" fill="#e8622a" opacity=".85"/>
+          <circle cx="174" cy="127" r="7" fill="#e8622a"/>
+          <circle cx="110" cy="164" r="5" fill="#e8622a" opacity=".75"/>
+          <circle cx="46" cy="127" r="6" fill="#e8622a" opacity=".85"/>
+          <circle cx="46" cy="53" r="5" fill="#e8622a" opacity=".8"/>
+          <!-- secondary nodes -->
+          <circle cx="148" cy="64" r="4" fill="rgba(180,210,255,.8)"/>
+          <circle cx="72" cy="116" r="3.5" fill="rgba(180,210,255,.7)"/>
+          <circle cx="150" cy="114" r="3" fill="rgba(180,210,255,.65)"/>
+          <circle cx="70" cy="66" r="3" fill="rgba(180,210,255,.65)"/>
+          <!-- centre node -->
+          <circle cx="110" cy="90" r="10" fill="#e8622a"/>
+          <circle cx="110" cy="90" r="5" fill="#fff" opacity=".9"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="posts-grid" id="posts-container"></div>
+  <div class="pagination" id="posts-pagination"></div>
+</div>
+
+<!-- ARTICLE -->
+<div id="page-article" class="page">
+  <div class="article-banner">
+    <canvas id="canvas-article"></canvas>
+    <div class="article-banner-split">
+      <div class="article-banner-left">
+        <div class="hero-rule"></div>
+        <p class="article-banner-quote">"Innovation distinguishes between a leader and a follower."</p>
+        <p class="article-banner-attr">— Steve Jobs</p>
+      </div>
+      <div class="article-banner-right">
+        <svg viewBox="0 0 220 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- === NEURAL NETWORK === -->
+          <!-- Layer labels (faint) -->
+          <!-- INPUT LAYER x=28 -->
+          <!-- HIDDEN 1 x=90 -->
+          <!-- HIDDEN 2 x=152 -->
+          <!-- OUTPUT x=200 -->
+
+          <!-- Connections: input → hidden1 -->
+          <line x1="28" y1="32"  x2="90" y2="46"  stroke="rgba(180,210,255,.28)" stroke-width="1"/>
+          <line x1="28" y1="32"  x2="90" y2="80"  stroke="rgba(180,210,255,.22)" stroke-width="1"/>
+          <line x1="28" y1="32"  x2="90" y2="114" stroke="rgba(180,210,255,.18)" stroke-width="1"/>
+          <line x1="28" y1="32"  x2="90" y2="148" stroke="rgba(180,210,255,.14)" stroke-width="1"/>
+
+          <line x1="28" y1="64"  x2="90" y2="46"  stroke="rgba(180,210,255,.22)" stroke-width="1"/>
+          <line x1="28" y1="64"  x2="90" y2="80"  stroke="rgba(180,210,255,.30)" stroke-width="1"/>
+          <line x1="28" y1="64"  x2="90" y2="114" stroke="rgba(180,210,255,.20)" stroke-width="1"/>
+          <line x1="28" y1="64"  x2="90" y2="148" stroke="rgba(180,210,255,.16)" stroke-width="1"/>
+
+          <line x1="28" y1="96"  x2="90" y2="46"  stroke="rgba(180,210,255,.18)" stroke-width="1"/>
+          <line x1="28" y1="96"  x2="90" y2="80"  stroke="rgba(180,210,255,.24)" stroke-width="1"/>
+          <line x1="28" y1="96"  x2="90" y2="114" stroke="rgba(180,210,255,.32)" stroke-width="1"/>
+          <line x1="28" y1="96"  x2="90" y2="148" stroke="rgba(180,210,255,.18)" stroke-width="1"/>
+
+          <line x1="28" y1="128" x2="90" y2="46"  stroke="rgba(180,210,255,.14)" stroke-width="1"/>
+          <line x1="28" y1="128" x2="90" y2="80"  stroke="rgba(180,210,255,.18)" stroke-width="1"/>
+          <line x1="28" y1="128" x2="90" y2="114" stroke="rgba(180,210,255,.24)" stroke-width="1"/>
+          <line x1="28" y1="128" x2="90" y2="148" stroke="rgba(180,210,255,.30)" stroke-width="1"/>
+
+          <!-- Connections: hidden1 → hidden2 (accent-tinted) -->
+          <line x1="90" y1="46"  x2="152" y2="46"  stroke="rgba(232,98,42,.38)" stroke-width="1.1"/>
+          <line x1="90" y1="46"  x2="152" y2="80"  stroke="rgba(232,98,42,.22)" stroke-width="1"/>
+          <line x1="90" y1="46"  x2="152" y2="114" stroke="rgba(232,98,42,.16)" stroke-width="1"/>
+          <line x1="90" y1="46"  x2="152" y2="148" stroke="rgba(232,98,42,.12)" stroke-width="1"/>
+
+          <line x1="90" y1="80"  x2="152" y2="46"  stroke="rgba(232,98,42,.20)" stroke-width="1"/>
+          <line x1="90" y1="80"  x2="152" y2="80"  stroke="rgba(232,98,42,.42)" stroke-width="1.2"/>
+          <line x1="90" y1="80"  x2="152" y2="114" stroke="rgba(232,98,42,.22)" stroke-width="1"/>
+          <line x1="90" y1="80"  x2="152" y2="148" stroke="rgba(232,98,42,.14)" stroke-width="1"/>
+
+          <line x1="90" y1="114" x2="152" y2="46"  stroke="rgba(232,98,42,.14)" stroke-width="1"/>
+          <line x1="90" y1="114" x2="152" y2="80"  stroke="rgba(232,98,42,.20)" stroke-width="1"/>
+          <line x1="90" y1="114" x2="152" y2="114" stroke="rgba(232,98,42,.40)" stroke-width="1.2"/>
+          <line x1="90" y1="114" x2="152" y2="148" stroke="rgba(232,98,42,.20)" stroke-width="1"/>
+
+          <line x1="90" y1="148" x2="152" y2="46"  stroke="rgba(232,98,42,.10)" stroke-width="1"/>
+          <line x1="90" y1="148" x2="152" y2="80"  stroke="rgba(232,98,42,.14)" stroke-width="1"/>
+          <line x1="90" y1="148" x2="152" y2="114" stroke="rgba(232,98,42,.22)" stroke-width="1"/>
+          <line x1="90" y1="148" x2="152" y2="148" stroke="rgba(232,98,42,.36)" stroke-width="1.1"/>
+
+          <!-- Connections: hidden2 → output -->
+          <line x1="152" y1="46"  x2="200" y2="63"  stroke="rgba(232,98,42,.45)" stroke-width="1.3"/>
+          <line x1="152" y1="46"  x2="200" y2="97"  stroke="rgba(232,98,42,.22)" stroke-width="1"/>
+          <line x1="152" y1="80"  x2="200" y2="63"  stroke="rgba(232,98,42,.38)" stroke-width="1.2"/>
+          <line x1="152" y1="80"  x2="200" y2="97"  stroke="rgba(232,98,42,.28)" stroke-width="1"/>
+          <line x1="152" y1="114" x2="200" y2="63"  stroke="rgba(232,98,42,.18)" stroke-width="1"/>
+          <line x1="152" y1="114" x2="200" y2="97"  stroke="rgba(232,98,42,.42)" stroke-width="1.3"/>
+          <line x1="152" y1="148" x2="200" y2="63"  stroke="rgba(232,98,42,.12)" stroke-width="1"/>
+          <line x1="152" y1="148" x2="200" y2="97"  stroke="rgba(232,98,42,.30)" stroke-width="1.1"/>
+
+          <!-- INPUT nodes (blue-white) -->
+          <circle cx="28" cy="32"  r="6.5" fill="rgba(180,210,255,.15)" stroke="rgba(180,210,255,.75)" stroke-width="1.5"/>
+          <circle cx="28" cy="64"  r="6.5" fill="rgba(180,210,255,.15)" stroke="rgba(180,210,255,.75)" stroke-width="1.5"/>
+          <circle cx="28" cy="96"  r="6.5" fill="rgba(180,210,255,.15)" stroke="rgba(180,210,255,.75)" stroke-width="1.5"/>
+          <circle cx="28" cy="128" r="6.5" fill="rgba(180,210,255,.15)" stroke="rgba(180,210,255,.75)" stroke-width="1.5"/>
+          <!-- inner dots -->
+          <circle cx="28" cy="32"  r="2.5" fill="rgba(180,210,255,.9)"/>
+          <circle cx="28" cy="64"  r="2.5" fill="rgba(180,210,255,.9)"/>
+          <circle cx="28" cy="96"  r="2.5" fill="rgba(180,210,255,.9)"/>
+          <circle cx="28" cy="128" r="2.5" fill="rgba(180,210,255,.9)"/>
+
+          <!-- HIDDEN 1 nodes -->
+          <circle cx="90" cy="46"  r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="90" cy="80"  r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="90" cy="114" r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="90" cy="148" r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="90" cy="46"  r="3" fill="#e8622a"/>
+          <circle cx="90" cy="80"  r="3" fill="#e8622a"/>
+          <circle cx="90" cy="114" r="3" fill="#e8622a"/>
+          <circle cx="90" cy="148" r="3" fill="#e8622a"/>
+
+          <!-- HIDDEN 2 nodes -->
+          <circle cx="152" cy="46"  r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="152" cy="80"  r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="152" cy="114" r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="152" cy="148" r="7.5" fill="rgba(232,98,42,.2)" stroke="#e8622a" stroke-width="1.8"/>
+          <circle cx="152" cy="46"  r="3" fill="#e8622a"/>
+          <circle cx="152" cy="80"  r="3" fill="#e8622a"/>
+          <circle cx="152" cy="114" r="3" fill="#e8622a"/>
+          <circle cx="152" cy="148" r="3" fill="#e8622a"/>
+
+          <!-- OUTPUT nodes (glowing) -->
+          <circle cx="200" cy="63" r="8.5" fill="rgba(232,98,42,.3)" stroke="#e8622a" stroke-width="2"/>
+          <circle cx="200" cy="97" r="8.5" fill="rgba(232,98,42,.3)" stroke="#e8622a" stroke-width="2"/>
+          <!-- outer glow rings -->
+          <circle cx="200" cy="63" r="13" stroke="rgba(232,98,42,.18)" stroke-width="1.2"/>
+          <circle cx="200" cy="97" r="13" stroke="rgba(232,98,42,.18)" stroke-width="1.2"/>
+          <!-- bright centres -->
+          <circle cx="200" cy="63" r="4" fill="#fff" opacity=".85"/>
+          <circle cx="200" cy="97" r="4" fill="#fff" opacity=".85"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="article-wrap">
+    <button class="back-btn" onclick="showPage('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All articles
+    </button>
+    <div id="article-content"></div>
+  </div>
+</div>
+
+<!-- RECRUITER TRAINING -->
+<div id="page-training" class="page">
+  <div class="hero" id="hero-training">
+    <canvas id="canvas-training"></canvas>
+    <div class="hero-split">
+      <div class="hero-left">
+        <div class="hero-rule"></div>
+        <div class="hero-name">The <em>Sourcebook</em></div>
+        <p style="margin-top:.75rem;font-family:'Cormorant Garamond',serif;font-size:1.2rem">Domain deep sourcing playbooks into key technology, BPO, and other industry functions.</p>
+        <p class="hero-sub" style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic">"The more that you read, the more things you will know." &mdash; Dr. Seuss</p>
+      </div>
+      <div class="hero-right">
+        <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- left page -->
+          <rect x="22" y="38" width="86" height="110" rx="4" fill="rgba(232,98,42,.18)" stroke="#e8622a" stroke-width="2"/>
+          <!-- right page -->
+          <rect x="112" y="38" width="86" height="110" rx="4" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+          <!-- spine -->
+          <line x1="110" y1="36" x2="110" y2="150" stroke="#e8622a" stroke-width="3"/>
+          <!-- left page content lines -->
+          <line x1="36" y1="62" x2="96" y2="62" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+          <line x1="36" y1="74" x2="96" y2="74" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+          <line x1="36" y1="84" x2="82" y2="84" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <line x1="36" y1="94" x2="96" y2="94" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <line x1="36" y1="104" x2="88" y2="104" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+          <line x1="36" y1="114" x2="96" y2="114" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+          <line x1="36" y1="124" x2="72" y2="124" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".35"/>
+          <!-- left accent dot -->
+          <circle cx="36" cy="52" r="4" fill="#e8622a"/>
+          <!-- right page content lines -->
+          <line x1="124" y1="62" x2="184" y2="62" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          <line x1="124" y1="74" x2="184" y2="74" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <line x1="124" y1="84" x2="170" y2="84" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+          <line x1="124" y1="94" x2="184" y2="94" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+          <line x1="124" y1="104" x2="174" y2="104" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+          <line x1="124" y1="114" x2="184" y2="114" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".38"/>
+          <line x1="124" y1="124" x2="158" y2="124" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".32"/>
+          <!-- right accent dot -->
+          <circle cx="124" cy="52" r="4" fill="rgba(255,255,255,.6)"/>
+          <!-- floating bookmark -->
+          <path d="M178 28 L178 50 L172 44 L166 50 L166 28 Z" fill="#e8622a" opacity=".85"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="posts-grid" id="training-container"></div>
+  <div class="pagination" id="training-pagination"></div>
+</div>
+
+<!-- ADMIN -->
+<div id="page-admin" class="page">
+  <div class="admin-wrap">
+    <h1>Write a new article</h1>
+    <p class="subtitle">Published posts appear immediately on the home page.</p>
+    <div class="form-group" style="padding:1rem;border:1px dashed var(--border);border-radius:var(--radius);background:var(--bg2)">
+      <label>Upload a blog file (.md, .txt, .html)</label>
+      <p style="font-size:.78rem;color:var(--txt3);margin:.25rem 0 .6rem;font-family:sans-serif">First line = title · second line = deck · rest = body. Or use front-matter with <code>title:</code>, <code>deck:</code>, <code>series:</code>.</p>
+      <input type="file" id="upload-file" accept=".md,.txt,.html,.htm,.markdown" style="font-family:sans-serif;font-size:.85rem">
+      <div style="margin-top:.6rem;display:flex;gap:.5rem;flex-wrap:wrap">
+        <button class="btn-primary" type="button" onclick="uploadBlog(false)" style="padding:.5rem 1rem;font-size:.85rem">Load into form</button>
+        <button class="btn-primary" type="button" onclick="uploadBlog(true)" style="padding:.5rem 1rem;font-size:.85rem">Upload &amp; publish →</button>
+      </div>
+    </div>
+    <div class="form-group"><label>Article title</label><input type="text" id="new-title" placeholder="e.g. The Skills Graph Is Replacing the CV"></div>
+    <div class="form-group"><label>Deck / subtitle</label><input type="text" id="new-deck" placeholder="One-line framing — the most important sentence."></div>
+    <div class="form-group"><label>Series / issue tag</label><input type="text" id="new-series" placeholder="e.g. Leadership Pipeline Series · Issue 04"></div>
+    <div class="form-group"><label>Body — blank lines = paragraphs · ## for headings · &gt; for quotes</label><textarea id="new-body" placeholder="## A heading&#10;&#10;Your paragraph here...&#10;&#10;&gt; A great quote&#10;&gt; — Attribution"></textarea></div>
+    <button class="btn-primary" onclick="publishPost()">Publish article →</button>
+    <div class="success-msg" id="success-msg">✓ Article published successfully.</div>
+    <div class="admin-posts" style="margin-top:2.5rem">
+      <p style="font-size:.8rem;font-weight:700;color:var(--txt3);text-transform:uppercase;letter-spacing:.07em;font-family:sans-serif;margin-bottom:.85rem">Published articles</p>
+      <div id="admin-list"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p style="font-size:.75rem;color:var(--txt3);font-family:sans-serif;text-align:center">Hire Intelligence &nbsp;·&nbsp; 2026</p>
+  </div>
+  <div class="quote-bar">
+    <div class="quote-text" id="quote-text"></div>
+    <div class="quote-attr" id="quote-attr"></div>
+  </div>
+</footer>
+
+<script>
+var PHOTO_URL='/mnt/user-data/uploads/1762677956263.png';
+var AUTHOR_IMG=null;
+
+var posts=[
+  {id:1,title:"The Other Side of AI Hiring",deck:"As 87% of companies deploy AI in recruitment, candidates are adapting, resisting — and increasingly fighting back with AI of their own.",series:"AI in Hiring Series · Issue 01",date:"April 2026",body:`## The trust deficit nobody is talking about
+
+Here is the central tension of AI hiring in 2026: employers are deploying AI faster than ever, while candidates trust it less than ever. According to Gartner, only 26% of applicants believe AI can evaluate them fairly. Pew Research found that 66% of Americans say they would not apply for a role at a company they knew used AI in the hiring process. And 71% actively oppose AI making the final hiring call.
+
+This isn't irrational technophobia. Candidates have real reasons for concern. Audit data from 2026 found that resume screening tools were 35% less likely to advance applicants with names perceived as African American, while video interview analysis tools showed a 28% bias against candidates over 50.
+
+The irony is sharp: AI in recruitment was partly sold on the promise of reducing human bias. And in well-implemented systems, it does — bias-blind screening has been shown to cut gender bias by 54% and improve underrepresented minority hiring by 35%. But when AI is trained on historical data that already reflects workplace inequalities, it doesn't neutralise bias. It scales it.
+
+## Candidates are adapting — with AI of their own
+
+Rather than opting out, most job seekers are choosing to play the game differently. A 2026 survey by Resume Genius found that 78% of job seekers now use AI tools at some point in their search — for CVs, cover letters, application writing, and interview preparation.
+
+More striking: 22% report using AI in real time during interviews — with tools providing live talking points, suggested answers, and prompts while they speak.
+
+An NBER field experiment demonstrated the upside: job seekers using algorithmic resume assistance were hired 8% more often than those who didn't.
+
+> "The data tells a story of rapid adoption colliding with slow trust. Employers report efficiency gains — but candidates distrust the tools."
+> — SQ Magazine, AI Recruitment Statistics 2026
+
+## What good looks like
+
+The first requirement is transparency. 60% of candidates research whether a company uses AI before applying. NYC's Local Law 144 has made disclosure a legal requirement. The EU AI Act classifies hiring AI as high-risk and mandates transparency.
+
+The second is a human in the loop. The companies winning candidate trust are those treating AI as a shortlisting tool, not a verdict machine.
+
+The third is feedback — even after rejection. 75% of candidates want personalised feedback after an interview, something AI is well-placed to deliver at scale. The tech exists; the will to use it is what's missing.
+
+AI hiring is already here for 87% of companies. But candidate trust sits at 26%. The organisations that close that gap won't be the ones with the most sophisticated AI. They'll be the ones that use AI to make hiring feel more human, not less.`,
+    stats:[{n:"78%",l:"Job seekers using AI tools"},{n:"26%",l:"Candidates who trust AI evaluation"},{n:"66%",l:"Americans who'd avoid AI-hiring employers"},{n:"8%",l:"Higher hire rate with AI resume help"}]},
+  {id:2,title:"How Claude Is Changing the World of Recruitment",deck:"From drowning in CVs to hiring with confidence — Anthropic's Claude is quietly becoming the most powerful tool in every recruiter's arsenal.",series:"Deep Dive · Issue 02",date:"April 2026",body:`## The problem that hasn't changed
+
+Recruitment has always been a high-stakes, time-hungry game. A single mis-hire can cost a company anywhere from 30% to 200% of that role's annual salary. And yet, for decades, the hiring process has changed remarkably little — post a job, wade through hundreds of CVs, schedule interviews, hope for the best.
+
+Then came Claude — Anthropic's flagship AI assistant — and it's flipping that playbook entirely. Claude brings genuine language understanding, ethical reasoning, and contextual depth to talent acquisition. The result? Faster hiring, sharper decisions, reduced bias, and recruiters who finally have time to do the work that actually matters: building human relationships.
+
+## What Claude actually does for recruiters
+
+Claude operates as a full-stack thinking partner — capable of reading, writing, evaluating, comparing, and recommending at a depth that keyword-matching tools simply can't match.
+
+On resume screening at scale, you can batch 50+ CVs into a conversation with a job description and scoring rubric. Claude outputs a ranked table — replacing 3–4 hours of manual work in minutes.
+
+On job description writing, Claude writes inclusive, role-specific JDs. Braintrust saw a 25% increase in applicants for roles using Claude-powered job descriptions.
+
+> "Recruiters using Claude AI report saving 8–12 hours per week on tasks that used to eat their days."
+> — MindHunt AI, 2026
+
+Claude's 200,000-token context window means it can process lengthy resumes, portfolios, cover letters, and entire hiring rubrics simultaneously — understanding nuance that simple keyword-matching tools will always miss.
+
+## Three use cases transforming hiring right now
+
+In enterprise volume hiring, large organisations posting roles that attract 300+ applications face a brutal triaging problem. With Claude, every application receives a structured, consistent evaluation. Companies have cut manual screening time by 40–70%.
+
+In sales and SDR hiring, the average cost of a bad SDR hire is $115,000. Claude evaluates candidates against scorecards built on top-performer patterns, removing the lag that loses the best talent.
+
+In skills-based and inclusive hiring, Claude's ability to assess candidates on demonstrated capabilities — rather than pedigree or demographic signals — has made it a powerful tool for diversity-focused talent teams.
+
+## The road ahead
+
+The AI recruitment market is forecast to nearly double from $660M in 2025 to over $1.125 billion by 2033. The companies winning in 2026 are pairing AI with upskilled humans — using technology to make their people more productive, not fewer.
+
+The question isn't whether AI will reshape your hiring process. It already has for 87% of companies. The question is whether you'll be the recruiter who shapes how it's used — or the one who gets left behind.`,
+    stats:[{n:"87%",l:"Companies using AI in recruitment"},{n:"80%",l:"Reduction in manual screening"},{n:"48%",l:"Diversity hiring effectiveness gain"},{n:"25%",l:"Time-to-hire reduction"}]},
+  {id:3,title:"Who Gets In The Door Now?",deck:"AI is automating the junior work that built every leadership pipeline. The savings are immediate. The crisis is structural — and arriving on schedule for 2029.",series:"Leadership Pipeline Series · Issue 03",date:"May 2026",body:`## The trade-off that looks smart right now
+
+The calculus looks seductive on a spreadsheet. An AI agent handling data entry, report generation, or first-pass research costs a fraction of a junior hire — no onboarding, no salary progression. For organisations optimising 2026–27 budget cycles, replacing entry-level roles with automation appears almost rational.
+
+But there is a structural problem embedded in that logic — one Korn Ferry's 2025 research surfaced clearly. The same junior roles being automated today are the roles that produce the senior leaders organisations will desperately need in 2029 and beyond.
+
+> "It would be a mistake to stop hiring young, entry-level people. These are the fastest adopters of new technology."
+> — David Ellis, Korn Ferry · TA Trends 2026
+
+Korn Ferry surveyed over 1,670 global talent leaders and found 43% of companies plan to substitute human roles with AI, with entry-level a prime target at 37%. The short-term savings are real. But the beginner analyst becomes a junior manager. The coordinator becomes your team lead. Cut those roles today, and your biggest problem in 2029 is that your most experienced employee is a bot.
+
+## The learning curve is being automated away
+
+Entry-level work has always had an implicit deal: trade rote effort — research decks, data models, screening calls — for mentorship and gradual progression into complexity. AI is breaking that deal.
+
+The numbers are stark. In the UK, tech graduate roles fell 46% in 2024, with a projected further 53% drop by 2026. In the US, junior tech postings dropped as much as 67%. Entry-level finance positions fell 24 percentage points. At India's top engineering institutes, fewer than 25% of graduates secured offers as of mid-2026.
+
+What's being automated is not glamorous work. It is first-pass screening, data formatting, financial modelling, code review, research compilation, report drafting, meeting summaries. They were the substrate on which business judgment was built. Remove the work and you remove the development stage — not just the job.
+
+## The diversity consequence nobody is calculating
+
+The entry-level door has always been the most accessible one — it does not require a prestigious network or documented achievement. For first-generation professionals and candidates from underrepresented backgrounds, it has been the primary on-ramp into corporate careers. When that door narrows, no DEI programme compensates for its structural absence.
+
+Companies with robust inclusion practices are 2.7× more likely to win new business. Closing the entry-level door weakens the diversity pipeline and the business case for inclusion itself.
+
+## AI as the problem — and the path forward
+
+The organisations navigating this well are redesigning what entry-level work looks like in an AI-first environment. Korn Ferry's "fat pyramid" model uses AI to handle scheduling, data entry, and basic analysis — freeing early-career professionals for richer work sooner.
+
+Companies taking a human-AI augmentation approach report 2.5× higher revenue growth than pure automation plays. IBM tripled junior hiring after 2025 layoffs, betting on AI-fluent digital natives. Cognizant hired 25,000 fresh graduates in 2025 and plans to exceed that figure in 2026.
+
+## Three moves that actually matter
+
+The first is to redefine, not delete. Use AI to automate the administrative layer of junior roles, not the roles themselves. Give early-career talent expanded scope with AI as their toolkit.
+
+The second is to measure pipeline health. Most organisations track time-to-hire and cost-per-hire. Almost none track pipeline health over a three-to-five year horizon. AI makes this analysis easier than ever. The will to act is what's missing.
+
+The third is to treat early-career hiring as strategic. Entry-level hiring decisions determine the talent available for promotion in 2029 and the diversity of leadership in 2031. The 2026 savings are real. The 2029 leadership crisis those cuts will produce is equally real — and harder to reverse. There is no algorithm for experience you never had.`,
+    stats:[{n:"37%",l:"Companies replacing entry-level with AI"},{n:"66%",l:"Enterprises cutting junior hiring"},{n:"13%",l:"Decline in junior hiring at AI-adopters"},{n:"49%",l:"Gen Z say AI devalued their degree"}]},
+  {id:4,title:"When Candidates Use AI to Apply — And Recruiters Use AI to Screen",deck:"78% of applications now contain AI-generated content. 70% of job seekers use AI to prep. Recruiters are fighting back with AI detection. Who wins? Nobody — yet.",series:"AI in Hiring Series · Issue 04",date:"May 2026",body:`## Welcome to the AI arms race
+
+Something unprecedented is happening in the hiring world. On one side of the table, candidates are using AI to write their CVs, craft cover letters, prep for interviews, and even answer assessment questions. On the other side, recruiters are using AI to screen those exact same applications — and increasingly, to detect whether they were AI-generated in the first place.
+
+Nobody planned it. Everybody's in it. 78% of all job applications now contain AI-generated content. 90% of US companies now use AI tools to screen incoming applications.
+
+## How candidates are using AI
+
+By mid-2025, 70% of job seekers reported using generative AI to research companies, draft cover letters, and prep interview talking points — up from 25% in Q2 2023, a near-tripling in two years. 54% use it to write resumes. 50% use it for cover letters. 36% generate writing samples with it. 29% use it to answer assessment questions. And 6% admitted to interview fraud — having AI or another person impersonate them in live interviews.
+
+> "A recruiter processing 200 applications for a single role is almost certainly reading content written — at least in part — by ChatGPT, Claude, or Gemini. The question is no longer whether AI is present in applications. It's what to do about it."
+> — WasItAIGenerated Research, 2026
+
+## How recruiters are fighting back
+
+The response from hiring teams has been swift — and complicated. The problem isn't just detection. It's the philosophical question underneath: is using AI to apply a form of cheating? Or is it a legitimate professional skill?
+
+Wave 1 · 2023–2024 — Flood of look-alike applications. 64% of recruiters reported seeing more identical-looking applications. AI-written resumes all started to sound the same — polished, keyword-rich, and generic.
+
+Wave 2 · 2025 — AI detection tools emerge. Enterprise ATS providers started integrating AI content detection. But only 18% of hiring managers could correctly identify AI-written cover letters — an 82% failure rate (ResumeBuilder, 2025).
+
+Wave 3 · 2026 — Interview fraud & live detection. Karat reported a 5× increase in cheating detection across 500,000+ technical interviews. Amazon banned AI tools during interviews. Companies began training recruiters to spot "unnatural reading patterns."
+
+Now · Mid-2026 — The real-time AI screen. 80% of high-volume recruiting is expected to start with an AI-powered voice screen by mid-2026 — where both sides of the conversation are AI-assisted or AI-monitored.
+
+## The collateral damage
+
+75% of resumes are filtered out before a human ever reads them. 56% of firms worry AI may screen out genuinely qualified applicants. The average candidate submits 32+ applications before receiving an offer. And only 18% of women use paid AI job tools — highlighting a growing access gap.
+
+The most insidious outcome: when AI writes the application and AI screens it, neither side learns anything real about the other. The candidate who can "prompt-engineer" the best CV gets the interview — not necessarily the best person for the job.
+
+## Where does this end?
+
+The arms race doesn't have a winner — it has an equilibrium. The organisations navigating this best are reframing the question: instead of "did AI write this?" they're asking "can this person do the job?" That means more live skills tests, structured conversations, work samples, and less weight on polished cover letters no one believes anymore.
+
+The future of hiring isn't about catching AI. It's about designing processes resilient enough that AI-assisted applications don't break them.`,
+    stats:[{n:"78%",l:"Applications containing AI-generated content"},{n:"90%",l:"US firms using AI to screen applicants"},{n:"75%",l:"Resumes filtered out before a human reads them"},{n:"5x",l:"Increase in interview cheating detection"}]},
+  {id:5,title:"The Bias Paradox: Can AI Make Hiring Fairer — Or Just Automate Our Prejudices at Scale?",deck:"AI promised to remove human bias from hiring. The data tells a more complicated story. Here's what every talent leader needs to know.",series:"AI Ethics Series · Issue 05",date:"June 2026",body:`## The promise that wasn't
+
+The pitch was irresistible. Remove humans from screening, and you remove human bias. Let the algorithm decide — objectively, consistently, at scale. It was the promise that launched a thousand AI hiring products. And for a while, it sounded almost too good to be true.
+
+It was.
+
+The largest independent study of AI hiring algorithms ever conducted — published by Stanford HAI in May 2026 — found stark racial disparities in the tools used to screen millions of job applicants. More than 1 in 4 Black job seekers were directed to positions where the algorithm produced outcomes that triggered federal adverse impact thresholds. Not because the AI was malicious. Because it was trained on historical data that was already biased.
+
+> "The algorithm doesn't discriminate on purpose. It discriminates perfectly — at the speed of software, at the scale of millions."
+> — Stanford HAI, 2026
+
+## The evidence: what the studies actually found
+
+Stanford HAI, May 2026 — Largest AI hiring algorithm study to date. Analysed real-world deployment data across thousands of employers. Found that when data is pooled across positions, bias is masked. Position-by-position, 10.62% of jobs showed adverse impact on Black applicants — below the federal threshold when viewed in isolation, but devastating at scale.
+
+VoxDev / An et al., 2025 — Gender × race intersectionality. A large-scale randomised experiment found leading AI models systematically favoured female candidates while disadvantaging Black male applicants — even when qualifications were identical. The bias wasn't additive; it was intersectional.
+
+Amazon, 2018 — the cautionary tale. Amazon's internal AI recruiting tool was scrapped after it was discovered to systematically downgrade CVs containing the word "women's" — trained on 10 years of male-dominated hiring decisions. It didn't invent bias. It learned it.
+
+## What recruiters actually think
+
+The HR community is split. 58% cite fear of bias as their top concern with AI hiring tools. 51% worry about depersonalisation. 50% worry about legal liability. But 67% point to time savings as the biggest benefit, 49% to quality of hire, and 43% believe — when properly implemented — AI actually reduces bias.
+
+## The regulation catch-up
+
+Governments are scrambling to keep pace. New York City's Local Law 144 — the world's first law targeting algorithmic hiring — requires annual bias audits and public reporting of results. California finalised AI anti-discrimination regulations in October 2025. The Colorado AI Act, effective June 2026, requires developers and users to use "reasonable care" to prevent algorithmic discrimination. And the EU AI Act now designates hiring algorithms as high-risk systems by default.
+
+The challenge? Existing government guidance often instructs auditors to pool data across positions and employers — precisely the aggregation method that Stanford's research shows masks the worst disparities.
+
+## So can AI actually reduce bias?
+
+Here's where it gets genuinely interesting. The answer is yes — but only under specific conditions. Research shows that properly implemented, continuously monitored AI reduces hiring bias by 56–61% across gender, racial, and educational categories. The operative word is "properly."
+
+Four practices separate the organisations getting this right from the ones automating discrimination: pre-deploy audits that test on diverse, intersectional groups before any live use; human oversight where AI narrows the pool but humans always make the call; continuous monitoring because bias can creep in as data changes — audit quarterly; and disaggregated data — never pool outcomes, analyse by role, level, and identity group.
+
+## The bottom line
+
+AI doesn't create bias. But it amplifies whatever bias is already in the system — faster, wider, and with the false authority of objectivity. The organisations that will get this right are the ones that treat AI as a mirror first, and a decision-maker second. The bias paradox isn't unsolvable. It just demands honesty.`,
+    stats:[{n:"25%+",l:"Black applicants affected by algorithmic bias"},{n:"56–61%",l:"Bias reduction with properly monitored AI"},{n:"48%",l:"Hiring managers admit to some form of bias"},{n:"10.62%",l:"Roles showing adverse impact position-by-position"}]},
+  {id:6,title:"The Recruiter of 2030: What Does the Job Actually Look Like When AI Handles 80% of the Process?",deck:"AI is taking over the admin, the data work, the screening, the scheduling. So what's left for the human recruiter — and is it more valuable or less?",series:"Future of Work Series · Issue 06",date:"June 2026",body:`## The question no one in HR is asking loudly enough
+
+If AI is going to handle sourcing, screening, scheduling, assessment, and analytics — what exactly is the recruiter's job in 2030?
+
+The answer is more interesting — and more urgent — than most people realise. The recruiter role is morphing from a process executor into an advisor. We might not even call them recruiters anymore. Some companies are already calling them talent partners.
+
+> "The recruiter role is morphing from a process executor into an advisor. We might not even call them recruiters anymore. Some companies are already calling them talent partners."
+> — Korn Ferry, The Evolving Role of the Recruiter (May 2026)
+
+## The great skills shift: what's rising, what's falling
+
+The skills employers want from recruiters in 2026 look almost nothing like the skills they wanted in 2022. LinkedIn's 2025 Future of Recruiting data shows employers are 54× more likely to list "relationship development" as a recruiter skill than they were three years ago. Strategic workforce planning, data interpretation, candidate experience design, and employer branding are all climbing fast.
+
+What's falling? Exactly the work AI is absorbing — CV screening, interview scheduling, job posting management, reference checking, and sourcing from job boards. None of these are going away as activities. They're just no longer the recruiter's job.
+
+## What AI takes over — and what it can't
+
+By mid-2026, AI is already autonomously handling CV parsing and ranking, interview scheduling, initial voice screening, assessment scoring, and offer letter drafting. The numbers are eye-watering. Mastercard reduced scheduling time by 85% and now books 88% of interviews within 24 hours. Unilever cut time-to-fill for entry-level roles by 90% and reduced recruiter review time by 75%. Nestlé's automated scheduling frees an estimated 8,000 admin hours per month.
+
+The 45% of recruiters who are burnt out from repetitive admin work? AI is their relief. But here's the catch: freeing up time doesn't automatically mean that time is spent on higher-value work. That shift requires deliberate organisational design — and most companies haven't done that work yet.
+
+> "A recruiter processing 200 applications for a single role is almost certainly reading content written — at least in part — by AI. The question is no longer whether AI is present in the process. It's what humans are now uniquely needed for."
+
+## The market trajectory: AI recruitment to 2033
+
+The economics are unambiguous. The global AI recruitment market was $618M in 2024, sits at roughly $708M in 2026, and is projected to reach $1.13B by 2033. Every major HR tech investor is betting the same way: AI will be the substrate of recruiting; the differentiation will be in how humans use it.
+
+## The recruiter's roadmap: 2026 → 2030
+
+**2026 — The relief phase.** AI absorbs admin. Recruiters gain back 30–50% of their time. The best use it for deeper candidate relationships and strategic pipeline building. The rest are at risk.
+
+**2027–28 — The upskilling inflection.** Skills needed for AI-exposed jobs are changing 66% faster than other roles — a 2.5× acceleration vs. 2024. Recruiters who don't develop data literacy, AI fluency, and advisory skills will find their roles shrinking quietly, year on year.
+
+**2029–30 — The talent partner era.** 94% of recruitment processes incorporate AI. McKinsey predicts new roles emerge: AI Hiring Ethicist, Talent Intelligence Lead, Human-AI Collaboration Designer. Compensation rises 2× faster in AI-exposed recruitment roles versus traditional ones. The job title "recruiter" survives, but the work behind it looks almost nothing like it does today.
+
+## The bottom line
+
+The recruiter of 2030 isn't someone who screens CVs faster with AI. They're someone who uses AI-freed time to do the things AI genuinely cannot: build trust with candidates, read organisational culture, negotiate competing interests, and make judgement calls that balance data with humanity.
+
+That's not a smaller job. It's a bigger one. The question is whether your organisation — and your team — is preparing for it.`,
+    stats:[{n:"54×",l:"More likely employers list 'relationship development' as a recruiter skill"},{n:"80%",l:"High-volume recruiting starting with AI voice screening by mid-2026"},{n:"94%",l:"Recruitment processes expected to incorporate AI by 2030"},{n:"45%",l:"Recruiters citing repetitive admin as the top cause of burnout"}]}
+];
+
+function getTheme(){return localStorage.getItem('hi-theme')||'light'}
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('hi-theme',t);
+  document.getElementById('theme-icon').textContent=t==='dark'?'○':'☾';
+  document.getElementById('theme-label').textContent=t==='dark'?'Light':'Dark';
+}
+function toggleTheme(){setTheme(getTheme()==='dark'?'light':'dark')}
+
+var ADMIN_PASSWORD='Rockstar@123';
+function isAdmin(){return sessionStorage.getItem('hi-admin')==='1'}
+function ensureAdmin(){
+  if(isAdmin())return true;
+  var p=prompt('Admin password:');
+  if(p===ADMIN_PASSWORD){sessionStorage.setItem('hi-admin','1');updateAdminUI();return true}
+  if(p!==null)alert('Incorrect password');
+  return false;
+}
+function updateAdminUI(){
+  var l=document.getElementById('nav-write-link');
+  if(l)l.style.display=isAdmin()?'':'none';
+}
+function adminLogout(){sessionStorage.removeItem('hi-admin');updateAdminUI();showPage('home')}
+function showPage(name,postId){
+  if(name==='admin'&&!ensureAdmin())return;
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='home')renderPosts();
+  if(name==='training')renderTraining();
+  if(name==='article'&&postId!=null)renderArticle(postId);
+  if(name==='admin')renderAdminList();
+}
+// Secret: triple-click logo or press Ctrl+Shift+A to reveal admin login
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey&&e.shiftKey&&(e.key==='A'||e.key==='a')){e.preventDefault();ensureAdmin()}
+});
+document.addEventListener('DOMContentLoaded',updateAdminUI);
+
+function authorChipHTML(size){
+  // size: 'sm' = 32px chip for cards, 'lg' = 48px for article header
+  if(size==='lg'){
+    if(AUTHOR_IMG) return `<img src="${AUTHOR_IMG}" alt="Abhijeet Swarnkar" class="author-photo-lg">`;
+    return `<div class="author-fallback-lg">AS</div>`;
+  }
+  if(AUTHOR_IMG) return `<img src="${AUTHOR_IMG}" alt="Abhijeet Swarnkar" class="chip-photo">`;
+  return `<div class="chip-fallback">AS</div>`;
+}
+
+var PAGE_SIZE=5;
+var postsPage=1, trainingPage=1;
+
+function renderPagination(containerId,totalItems,currentPage,onChange){
+  var el=document.getElementById(containerId);
+  var totalPages=Math.max(1,Math.ceil(totalItems/PAGE_SIZE));
+  if(totalPages<=1){el.innerHTML='';return}
+  var html='<button '+(currentPage===1?'disabled':'')+' data-p="'+(currentPage-1)+'">‹ Prev</button>';
+  for(var i=1;i<=totalPages;i++){
+    html+='<button class="'+(i===currentPage?'active':'')+'" data-p="'+i+'">'+i+'</button>';
+  }
+  html+='<button '+(currentPage===totalPages?'disabled':'')+' data-p="'+(currentPage+1)+'">Next ›</button>';
+  el.innerHTML=html;
+  el.querySelectorAll('button[data-p]').forEach(function(b){
+    b.onclick=function(){
+      var p=parseInt(b.getAttribute('data-p'),10);
+      if(p>=1&&p<=totalPages){onChange(p);window.scrollTo({top:0,behavior:'smooth'})}
+    };
+  });
+}
+
+function renderPosts(){
+  var c=document.getElementById('posts-container');
+  c.innerHTML='';
+  var all=[...posts].reverse();
+  var start=(postsPage-1)*PAGE_SIZE;
+  all.slice(start,start+PAGE_SIZE).forEach(function(p){
+    var el=document.createElement('div');
+    el.className='post-card';
+    el.onclick=function(){showPage('article',p.id)};
+    var seriesLabel=p.series.split('·')[0].trim();
+    el.innerHTML=`
+      <div class="post-meta">
+        <span class="tag tag-indigo">${seriesLabel}</span>
+        <span class="tag tag-gold">${p.date}</span>
+      </div>
+      <h2>${p.title}</h2>
+      <p class="deck">${p.deck}</p>
+      <div class="chip-meta">${p.series}</div>
+      <div class="read-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>`;
+    c.appendChild(el);
+  });
+  renderPagination('posts-pagination',all.length,postsPage,function(p){postsPage=p;renderPosts()});
+}
+
+var trainingModules=[
+  {title:"Enterprise Operational Cycles & Sourcing Playbook",deck:"S2P, P2P, RTR and OTC end-to-end — the delivery playbook for talent teams hiring into finance & enterprise operations.",tag:"Finance Ops",file:"/training/enterprise-operational-cycles.html"},
+  {title:"US Healthcare Operations",deck:"Sourcing guide for payer, provider and RCM hiring — terminology, workflows and role archetypes a recruiter must know.",tag:"Healthcare",file:"/training/us-healthcare-operations.html"},
+  {title:"Trust & Safety Operations",deck:"Content moderation, policy enforcement and vendor models — how to hire for the front line of platform integrity.",tag:"Trust & Safety",file:"/training/trust-and-safety-operations.html"},
+  {title:"Service Desk Operations",deck:"L1/L2/L3 tiering, ITIL fundamentals and ticketing flows — the recruiter's field guide to IT service desk hiring.",tag:"Service Desk",file:"/training/service-desk-operations.html"},
+  {title:"The BPO Quality Function",deck:"Quality analysts, AQL sampling, calibration and CSAT — how the quality engine works and who to hire to run it.",tag:"Quality",file:"/training/bpo-quality-function.html"},
+  {title:"Workforce Management (WFM)",deck:"Forecasting, scheduling, real-time adherence and shrinkage — the recruiter's blueprint for hiring the engine room of operations.",tag:"WFM",file:"/training/workforce-management.html"},
+  {title:"Transition Management",deck:"Knowledge transfer, parallel runs and go-live governance — sourcing the leaders who move work across geographies without breaking it.",tag:"Transitions",file:"/training/transition-management.html"},
+  {title:"Software Development Life Cycle (SDLC)",deck:"Requirements, design, build, test, deploy and maintain — the foundations every recruiter needs to hire across engineering teams.",tag:"Engineering",file:"/training/software-development-lifecycle.html"},
+  {title:"Demystifying Product Management",deck:"Discovery, roadmaps, prioritisation and outcomes — the recruiter's primer on hiring PMs who actually ship.",tag:"Product",file:"/training/product-management.html"}
+];
+
+function renderTraining(){
+  var c=document.getElementById('training-container');
+  c.innerHTML='';
+  var start=(trainingPage-1)*PAGE_SIZE;
+  trainingModules.slice(start,start+PAGE_SIZE).forEach(function(m){
+    var el=document.createElement('div');
+    el.className='post-card';
+    el.onclick=function(){window.open(m.file,'_blank')};
+    el.innerHTML=`
+      <div class="post-meta">
+        <span class="tag tag-indigo">${m.tag}</span>
+        <span class="tag tag-gold">Training Module</span>
+      </div>
+      <h2>${m.title}</h2>
+      <p class="deck">${m.deck}</p>
+      <div class="chip-meta">Recruiter Enablement Series</div>
+      <div class="read-link">Open module <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>`;
+    c.appendChild(el);
+  });
+  renderPagination('training-pagination',trainingModules.length,trainingPage,function(p){trainingPage=p;renderTraining()});
+}
+
+
+
+function parseBody(body){
+  var lines=body.split('\n');var html='';var qLines=[];var cite='';
+  function flushQ(){
+    if(qLines.length){html+=`<blockquote><p>${qLines.join(' ')}</p>${cite?`<cite>${cite}</cite>`:''}</blockquote>`;qLines=[];cite='';}
+  }
+  lines.forEach(function(line){
+    var t=line.trim();
+    if(!t){flushQ();return;}
+    if(t.startsWith('## ')){flushQ();html+=`<h2>${t.slice(3)}</h2>`;return;}
+    if(t.startsWith('> — ')||t.startsWith('> - ')){cite=t.slice(4);return;}
+    if(t.startsWith('> ')){qLines.push(t.slice(2));return;}
+    flushQ();html+=`<p>${t}</p>`;
+  });
+  flushQ();return html;
+}
+
+function renderArticle(id){
+  var p=posts.find(function(x){return x.id===id});
+  if(!p)return;
+  var statsHtml='';
+  if(p.stats&&p.stats.length){
+    statsHtml='<div class="stat-grid">'+p.stats.map(function(s){
+      return`<div class="s-item"><div class="s-num">${s.n}</div><div class="s-lbl">${s.l}</div></div>`;
+    }).join('')+'</div>';
+  }
+  document.getElementById('article-content').innerHTML=`
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem">
+      <span class="tag tag-indigo">${p.series.split('·')[0].trim()}</span>
+      <span class="tag tag-gold">${p.series} · ${p.date}</span>
+    </div>
+    <h1>${p.title}</h1>
+    <p class="article-deck">${p.deck}</p>
+    ${statsHtml}
+    <div class="article-body">${parseBody(p.body)}</div>
+    <div class="article-quote-bar"><div class="article-quote-text">${articleQuotes[Math.floor(Math.random()*articleQuotes.length)].text}</div><div class="article-quote-attr">${articleQuotes[Math.floor(Math.random()*articleQuotes.length)].attr}</div></div>`;
+}
+
+function renderAdminList(){
+  var c=document.getElementById('admin-list');c.innerHTML='';
+  [...posts].reverse().forEach(function(p){
+    var row=document.createElement('div');row.className='admin-post-row';
+    row.innerHTML=`<div><div class="admin-post-title">${p.title}</div><div class="admin-post-meta">${p.date} · ${p.series}</div></div><button class="btn-danger" onclick="deletePost(${p.id})">Delete</button>`;
+    c.appendChild(row);
+  });
+}
+
+function uploadBlog(autoPublish){
+  var input=document.getElementById('upload-file');
+  var file=input.files&&input.files[0];
+  if(!file){alert('Please choose a file first.');return;}
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var text=String(e.target.result||'');
+    var title='',deck='',series='',body=text;
+    // Front-matter
+    var fm=text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+    if(fm){
+      fm[1].split(/\n/).forEach(function(line){
+        var m=line.match(/^(\w+)\s*:\s*(.*)$/);
+        if(!m)return;
+        var k=m[1].toLowerCase(),v=m[2].trim().replace(/^["']|["']$/g,'');
+        if(k==='title')title=v;
+        else if(k==='deck'||k==='subtitle'||k==='description')deck=v;
+        else if(k==='series'||k==='tag')series=v;
+      });
+      body=fm[2];
+    }
+    // HTML → strip to text-ish markdown
+    if(/\.html?$/i.test(file.name)||/<html|<body|<p[\s>]/i.test(text)){
+      var tmp=document.createElement('div');tmp.innerHTML=text;
+      if(!title){var h=tmp.querySelector('h1,h2,title');if(h)title=h.textContent.trim();}
+      var parts=[];
+      tmp.querySelectorAll('h2,h3,p,blockquote').forEach(function(el){
+        var t=el.textContent.trim();if(!t)return;
+        if(/^H[23]$/.test(el.tagName))parts.push('## '+t);
+        else if(el.tagName==='BLOCKQUOTE')parts.push('> '+t);
+        else parts.push(t);
+      });
+      body=parts.join('\n\n');
+    } else if(!fm){
+      // Plain/markdown: first non-empty line = title, second = deck
+      var lines=body.split(/\r?\n/);
+      while(lines.length&&!lines[0].trim())lines.shift();
+      if(!title&&lines.length){title=lines.shift().replace(/^#+\s*/,'').trim();}
+      while(lines.length&&!lines[0].trim())lines.shift();
+      if(!deck&&lines.length&&lines[0].length<200&&!/^#|^>/.test(lines[0])){
+        deck=lines.shift().trim();
+      }
+      body=lines.join('\n').trim();
+    }
+    if(!title){title=file.name.replace(/\.[^.]+$/,'');}
+    document.getElementById('new-title').value=title;
+    document.getElementById('new-deck').value=deck;
+    document.getElementById('new-series').value=series;
+    document.getElementById('new-body').value=body;
+    input.value='';
+    if(autoPublish)publishPost();
+  };
+  reader.onerror=function(){alert('Could not read file.');};
+  reader.readAsText(file);
+}
+
+function publishPost(){
+  var title=document.getElementById('new-title').value.trim();
+  var deck=document.getElementById('new-deck').value.trim();
+  var series=document.getElementById('new-series').value.trim();
+  var body=document.getElementById('new-body').value.trim();
+  if(!title||!body){alert('Please add at least a title and body.');return;}
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var now=new Date();
+  posts.push({id:Date.now(),title,deck,series:series||'Hire Intelligence',date:months[now.getMonth()]+' '+now.getFullYear(),body,stats:[]});
+  ['new-title','new-deck','new-series','new-body'].forEach(function(i){document.getElementById(i).value='';});
+  var msg=document.getElementById('success-msg');msg.style.display='block';
+  setTimeout(function(){msg.style.display='none'},3000);
+  renderAdminList();
+}
+
+function deletePost(id){
+  if(!confirm('Delete this article?'))return;
+  posts=posts.filter(function(p){return p.id!==id});
+  renderAdminList();
+}
+
+function refreshPhotos(){
+  renderPosts();
+  var ap=document.getElementById('about-photo');
+  if(ap&&AUTHOR_IMG)ap.src=AUTHOR_IMG;
+  var ac=document.getElementById('article-content');
+  if(ac&&ac.innerHTML){
+    ac.querySelectorAll('.author-photo-lg,.author-fallback-lg').forEach(function(el){
+      if(AUTHOR_IMG){
+        var img=document.createElement('img');
+        img.src=AUTHOR_IMG;img.alt='Abhijeet Swarnkar';img.className='author-photo-lg';
+        el.replaceWith(img);
+      }
+    });
+  }
+}
+
+setTheme(getTheme());
+renderPosts();
+
+(async function(){
+  try{
+    var res=await fetch(PHOTO_URL);
+    if(!res.ok)throw new Error('fetch failed');
+    var blob=await res.blob();
+    var reader=new FileReader();
+    reader.onload=function(e){
+      AUTHOR_IMG=e.target.result;
+      refreshPhotos();
+      var ap=document.getElementById('about-photo');
+      if(ap)ap.src=AUTHOR_IMG;
+    };
+    reader.readAsDataURL(blob);
+  }catch(e){
+    // fallback initials already shown
+  }
+})();
+</script>
+
+<script>
+(function(){
+  function initCanvas(canvasId, heroId){
+    var canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    var hero = document.getElementById(heroId);
+    var ctx = canvas.getContext('2d');
+    var W, H, nodes, animId;
+    var ACCENT = '#e8622a';
+    var NODE_COLOR = 'rgba(232,98,42,';
+    var LINE_COLOR = 'rgba(99,132,200,';
+
+    function resize(){
+      W = canvas.width = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }
+
+    function makeNodes(n){
+      var arr = [];
+      for(var i=0;i<n;i++){
+        arr.push({
+          x: Math.random()*W,
+          y: Math.random()*H,
+          vx: (Math.random()-.5)*.35,
+          vy: (Math.random()-.5)*.35,
+          r: Math.random()*1.8+1,
+          pulse: Math.random()*Math.PI*2
+        });
+      }
+      return arr;
+    }
+
+    function draw(ts){
+      ctx.clearRect(0,0,W,H);
+      var t = ts/1000;
+      var maxDist = Math.min(W,H)*.38;
+
+      for(var i=0;i<nodes.length;i++){
+        var a = nodes[i];
+        a.x += a.vx; a.y += a.vy;
+        if(a.x<0||a.x>W) a.vx*=-1;
+        if(a.y<0||a.y>H) a.vy*=-1;
+        a.pulse += .012;
+
+        for(var j=i+1;j<nodes.length;j++){
+          var b = nodes[j];
+          var dx=a.x-b.x, dy=a.y-b.y;
+          var dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<maxDist){
+            var alpha=(1-dist/maxDist)*.35;
+            ctx.beginPath();
+            ctx.strokeStyle=LINE_COLOR+alpha+')';
+            ctx.lineWidth=.6;
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for(var i=0;i<nodes.length;i++){
+        var n=nodes[i];
+        var glow = .5+Math.sin(n.pulse)*.25;
+        ctx.beginPath();
+        ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+        ctx.fillStyle=NODE_COLOR+glow+')';
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    function start(){
+      resize();
+      nodes = makeNodes(55);
+      if(animId) cancelAnimationFrame(animId);
+      animId = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', function(){
+      resize();
+      nodes = makeNodes(55);
+    });
+
+    start();
+  }
+
+  initCanvas('canvas-home','hero-home');
+  initCanvas('canvas-training','hero-training');
+  initCanvas('canvas-article','page-article');
+})();
+</script>
+
+<script>
+var articleQuotes = [
+    { text: "The more that you read, the more things you will know.", attr: "— Dr. Seuss" },
+    { text: "A reader lives a thousand lives before he dies. The man who never reads lives only one.", attr: "— George R.R. Martin" },
+    { text: "Reading is to the mind what exercise is to the body.", attr: "— Joseph Addison" },
+    { text: "The reading of all good books is like a conversation with the finest minds of past centuries.", attr: "— René Descartes" },
+    { text: "Not all readers are leaders, but all leaders are readers.", attr: "— Harry S. Truman" },
+    { text: "There is no friend as loyal as a book.", attr: "— Ernest Hemingway" },
+    { text: "Today a reader, tomorrow a leader.", attr: "— Margaret Fuller" },
+    { text: "If you only read the books that everyone else is reading, you can only think what everyone else is thinking.", attr: "— Haruki Murakami" },
+    { text: "I cannot live without books.", attr: "— Thomas Jefferson" },
+    { text: "One must always be careful of books, and what is inside them, for words have the power to change us.", attr: "— Cassandra Clare" }
+  ];
+
+(function(){
+  var quotes = [
+    { text: "The more that you read, the more things you will know.", attr: "— Dr. Seuss" },
+    { text: "If you only read the books that everyone else is reading, you can only think what everyone else is thinking.", attr: "— Haruki Murakami" },
+    { text: "A reader lives a thousand lives before he dies. The man who never reads lives only one.", attr: "— George R.R. Martin" },
+    { text: "Reading is to the mind what exercise is to the body.", attr: "— Joseph Addison" },
+    { text: "The reading of all good books is like a conversation with the finest minds of past centuries.", attr: "— René Descartes" },
+    { text: "Not all readers are leaders, but all leaders are readers.", attr: "— Harry S. Truman" },
+    { text: "There is no friend as loyal as a book.", attr: "— Ernest Hemingway" },
+    { text: "One must always be careful of books, and what is inside them, for words have the power to change us.", attr: "— Cassandra Clare" },
+    { text: "I cannot live without books.", attr: "— Thomas Jefferson" },
+    { text: "Today a reader, tomorrow a leader.", attr: "— Margaret Fuller" }
+  ];
+
+  var idx = Math.floor(Math.random() * quotes.length);
+  var textEl = document.getElementById('quote-text');
+  var attrEl = document.getElementById('quote-attr');
+  if(!textEl || !attrEl) return;
+
+  function showQuote(i){
+    textEl.style.opacity = 0;
+    attrEl.style.opacity = 0;
+    setTimeout(function(){
+      textEl.textContent = quotes[i].text;
+      attrEl.textContent = quotes[i].attr;
+      textEl.style.opacity = 1;
+      attrEl.style.opacity = 0.6;
+    }, 500);
+  }
+
+  showQuote(idx);
+  setInterval(function(){
+    idx = (idx + 1) % quotes.length;
+    showQuote(idx);
+  }, 7000);
+})();
+</script>
+</body>
+</html>
